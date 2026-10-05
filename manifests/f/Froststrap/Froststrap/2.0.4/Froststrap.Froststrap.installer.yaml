@@ -7,7 +7,7 @@ InstallerLocale: en-US
 InstallerType: wix
 Scope: user
 InstallerSwitches:
-  Silent: /S
+  Silent: /q
 Dependencies:
   PackageDependencies:
   - PackageIdentifier: Microsoft.DotNet.DesktopRuntime.10
