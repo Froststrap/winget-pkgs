@@ -1,0 +1,45 @@
+# Created with WinGet Releaser using komac v2.16.0
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.defaultLocale.1.12.0.schema.json
+
+PackageIdentifier: Froststrap.Froststrap
+PackageVersion: 2.0.3
+PackageLocale: en-US
+Publisher: Froststrap
+PublisherUrl: https://github.com/Froststrap
+PublisherSupportUrl: https://github.com/Froststrap/Froststrap/issues
+PackageName: Froststrap
+PackageUrl: https://github.com/Froststrap/Froststrap
+License: MPL-2.0
+LicenseUrl: https://github.com/Froststrap/Froststrap/blob/HEAD/LICENSE
+ShortDescription: Froststrap is a fork of Bloxstrap and Fishstrap, focused on performance and customization.
+ReleaseNotes: |-
+  Froststrap v2.0.3 - What's new?
+  Added
+  - macOS "About" menu for app doesn't pull up the Avalonia template, but now our About window
+  - Linux now trusts your Window frame, so there is no awkward titlebar drawing
+  Fixed
+  - GBS Editor locale issue where it would try to turn a String into a Double (issue #211) and fail on , based decimal system languages- e.g tries to .ParseInt() on value 2,53
+  - Clicking on About in Settings reinitialises with no lock mechanism causing it to keep creating new windows
+  - FINALLY- the updater isn't as bad since the rewrite, we have switched to a prerolled solution called Velopack
+    - Works on Windows, macOS and Linux AppImages
+    - exe installer on Windows has been replaced in favour of msi installer
+    - pre release auto updating should work now
+    - shows release notes on app update (hopefully)
+  Codebase
+  - Build system now has --no-installers for manual package management, like on AUR
+  - virtualdisplay rewritten from Swift into Rust
+    - other crates compile most deps so that new speed is pretty much ~1s
+    - makes the idea of "backend" code all now under the one common programming language
+    - simplifies CI - making the weird discrepancies where CPU spikes make build go from 8s to 2m go away
+  - rbackend architecture has changed so it's not going to be 1 big library, so what was rbackend is now notify
+  - notify uses rustbus, as a DBus implemenation rather than zbus
+    - Linux compile time is now ~5x faster
+  - notify no longer depends on objc2-foundation along with other mini-crates
+    - macOS compile time is ~4x faster
+  - All versioning is managed via the build system is now so to create a release it's literally creating the vX.X.X tag
+  - macOS app optimised, extracting our libs from the binary and storing in the manifest ./Contents/Frameworks/*.dylib
+  - refactor ThumbnailRequest's property Size to instead use an enum
+  Full Changelog: v2.0.2...v2.0.3
+ReleaseNotesUrl: https://github.com/Froststrap/Froststrap/releases/tag/v2.0.3
+ManifestType: defaultLocale
+ManifestVersion: 1.12.0
